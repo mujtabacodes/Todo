@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Todo from "./components/todo"
+import "./style.css"
 function App() {
   const [todos, setTodos] = useState([
     {
@@ -29,17 +30,17 @@ function App() {
   };
   return (
     <React.Fragment>
-      <h1>Todo App</h1>
+      <h1 className="heading">Todo App</h1>
       {
         todos.map((todo, index) =>
         (<>
           <Todo name={todo.name} description={todo.description} status={todo.status} key={index} />
-          <button onClick={() => removeTodo(index)}>Remove Todo</button>
+          <button className='btn' onClick={() => removeTodo(index)}>Remove Todo</button>
         </>
         )
         )
       }
-      <form onSubmit={addTodo}>
+      <form onSubmit={addTodo} className='addTodo_Container'>
         <input
           type="text"
           name="name"
@@ -56,7 +57,7 @@ function App() {
           id="description"
           placeholder="Todo Description"
         />
-        <button type="submit">Add Todo</button>
+        <button className='btn' type="submit">Add Todo</button>
       </form>
     </React.Fragment>
   )

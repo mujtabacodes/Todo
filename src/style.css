@@ -1,0 +1,34 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.heading{
+    width: 100%;
+    background-color: rgb(41, 111, 141);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    padding:0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border:.1px solid black;
+}
+.btn:hover{
+    background-color: rgb(228, 228, 228);
+}
+.addTodo_Container{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    gap: 1rem;
+}
+.addTodo_Container>input{
+
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border:.1px solid black;
+}

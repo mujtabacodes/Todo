@@ -1,5 +1,5 @@
 import React from "react";
-
+import './style.css'
 interface ITodo{
     name:string,
     description:string,
@@ -10,9 +10,9 @@ export default function Todo(props:ITodo){
     return(
         <React.Fragment>
             {status?(
-                <div>
-                <h1>{name}</h1>
-                <p>{description}</p>
+                <div className="todo">
+                <h1 className="title">{name}</h1>
+                <p className="desc">{description}</p>
                 </div>
             ):null}
         </React.Fragment>
