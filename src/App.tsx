@@ -13,24 +13,33 @@ function App() {
       status: true
     }
   ]);
-  const [name,setName]=useState('')
-  const [description,setDescription]=useState('')
-  const addTodo = (e:any) => {
-    e.preventDefault(); 
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+
+  const addTodo = (e: any) => {
+    e.preventDefault();
     setTodos([...todos, { name: name, description: description, status: true }]);
-    setName(''); 
+    setName('');
     setDescription('');
+  };
+
+  const removeTodo = (index: number) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   };
   return (
     <React.Fragment>
       <h1>Todo App</h1>
       {
         todos.map((todo, index) =>
-          (<Todo name={todo.name} description={todo.description} status={todo.status} key={index} />)
-
+        (<>
+          <Todo name={todo.name} description={todo.description} status={todo.status} key={index} />
+          <button onClick={() => removeTodo(index)}>Remove Todo</button>
+        </>
         )
-        }
-        <form onSubmit={addTodo}>
+        )
+      }
+      <form onSubmit={addTodo}>
         <input
           type="text"
           name="name"
