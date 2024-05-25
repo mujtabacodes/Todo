@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import React, { useState } from "react"
+import Todo from "./components/todo"
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [todos, setTodos] = useState([
+    {
+      name: "First Todo",
+      description: "this is our first todo app",
+      status: true
+    },
+    {
+      name: "Second Todo",
+      description: "this is our second todo app",
+      status: true
+    }
+  ]);
+  const [name,setName]=useState('')
+  const [description,setDescription]=useState('')
+  const addTodo = (e:any) => {
+    e.preventDefault(); 
+    setTodos([...todos, { name: name, description: description, status: true }]);
+    setName(''); 
+    setDescription('');
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <React.Fragment>
+      <h1>Todo App</h1>
+      {
+        todos.map((todo, index) =>
+          (<Todo name={todo.name} description={todo.description} status={todo.status} key={index} />)
+
+        )
+        }
+        <form onSubmit={addTodo}>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          id="name"
+          placeholder="Todo Name"
+        />
+        <input
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          id="description"
+          placeholder="Todo Description"
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+    </React.Fragment>
   )
 }
 
